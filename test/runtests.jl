@@ -7,6 +7,7 @@ using Dates
 #Create some datetime64s in Python
 #Originally the byte vector was created like this. Here we simply paste the result to avoid the
 #Python and numpy test dependency
+# np = pyimport("numpy")
 # parray = np.array(["2007-07-13", "2006-01-13", "2010-08-13"], dtype="datetime64")
 # jlbytes = pyconvert(Array,parray.tobytes())
 
