@@ -28,6 +28,16 @@ dt64 = reinterpret(DateTime64{Dates.Day},jlbytes)
 @test DateTimes64.pydatetime_string(DateTime64{Dates.Microsecond}) == "<M8[us]"
 @test DateTimes64.pydatetime_string(DateTime64{Dates.Nanosecond}) == "<M8[ns]"
 @test DateTimes64.pydatetime_string(dt64[1]) == "<M8[D]"
+@test DateTimes64.datetime_from_pystring("<M8[Y]") == DateTime64{Dates.Year}
+@test DateTimes64.datetime_from_pystring("<M8[M]") == DateTime64{Dates.Month}
+@test DateTimes64.datetime_from_pystring("<M8[W]") == DateTime64{Dates.Week}
+@test DateTimes64.datetime_from_pystring("<M8[D]") == DateTime64{Dates.Day}
+@test DateTimes64.datetime_from_pystring("<M8[h]") == DateTime64{Dates.Hour}
+@test DateTimes64.datetime_from_pystring("<M8[m]") == DateTime64{Dates.Minute}
+@test DateTimes64.datetime_from_pystring("<M8[s]") == DateTime64{Dates.Second}
+@test DateTimes64.datetime_from_pystring("<M8[ms]") == DateTime64{Dates.Millisecond}
+@test DateTimes64.datetime_from_pystring("<M8[us]") == DateTime64{Dates.Microsecond}
+@test DateTimes64.datetime_from_pystring("<M8[ns]") == DateTime64{Dates.Nanosecond}
 @test Date(zero(DateTime64{Dates.Day})) == Date(1970)
 @test DateTime64{Dates.Day}(Date(1970,1,5)) == DateTime64{Day}(4)
 @test DateTime64(Date(1970,1,5)) == DateTime64{Nanosecond}(345600000000000)
