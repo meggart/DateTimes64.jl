@@ -22,12 +22,12 @@ end
 pydatetime_string(x::DateTime64{P}) where P = pydatetime_string(DateTime64{P}) 
 
 function datetime_from_pystring(s)
-    m = match(s,r"<M8\[(\w+)\]")
+    m = match(r"<M8\[(\w+)\]",s)
     if m === nothing
         throw(ArgumentError("Could not parse datetime description"))
     else
-        s = m.match
-        i = findfirst(i->last(i)==s,strpairs)
+        ms = only(m.captures)
+        i = findfirst(i->isequal(last(i),ms),strpairs)
         i === nothing && throw(ArgumentError("Could not parse datetime description"))
         DateTime64{first(strpairs[i])}
     end
