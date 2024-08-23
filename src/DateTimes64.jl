@@ -1,6 +1,17 @@
 module DateTimes64
 export DateTime64
 using Dates: Period, TimeType, Date, DateTime, Dates
+
+"""
+    DateTime64{PeriodType} <: Dates.TimeType
+
+This type encodes a 64-bit DateType (stored internally as an Int64) as some number of the given `PeriodType` 
+(any subtype of `Dates.TimePeriod`, like `Dates.Nanosecond` `Dates.Hour`, `Dates.Minute`, etc).
+
+!!! tip
+    This structure mimics the Python `datetime64` or `M8[\$timeperiod]` exactly, and can be used to reinterpret
+    such values.  For example, `M8[ns]` in Python translates to `DateTime64{Dates.Nanosecond}` in Julia.
+"""
 struct DateTime64{P} <: TimeType
     i::Int64
 end
